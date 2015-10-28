@@ -1,0 +1,79 @@
+org   0
+
+        
+
+start:
+         mov   a, #0fH
+         mov   R7, a
+		mov   R4, #06H
+mk1:
+         xrl    a, #0f0h
+         mov   r6, a
+         mov   p0, A
+         call    delay
+         mov   a, r6
+         djnz  r4, mk1
+
+         mov   a, #3fH
+         mov   R7, a
+		mov r4, #07H
+mk3:
+         mov   a, r7
+         mov   p0, a
+         call    delay
+         rr     a
+         mov   r7, a
+         djnz  r4, mk3
+		
+	
+
+         mov   a, #0f0H
+         mov   R7, a
+		 mov   r3, #06H	
+mk2:
+         xrl    a, #0fh
+         mov   r6, a
+         mov   p0, a
+         call    delay
+         mov   a, r6
+		 djnz  r3, mk2
+		 
+		 
+		 
+         mov   a, #0fcH
+         mov   R7, a
+		 mov   r3, #07H
+mk4:
+         mov   a, r7
+         mov   p0, a
+         call    delay
+         rl    a
+         mov   r7,a
+		 djnz  r3, mk4
+
+
+
+
+
+
+		 jmp  start
+
+   
+delay:
+         push  5      
+; push R5???
+         push  6
+         push  7
+         mov   r5, #0fH
+dd1:     
+mov   r6, #255
+dd2:     
+mov   r7, #255
+         djnz   r7, $
+         djnz   r6, dd2
+         djnz   r5, dd1
+         pop   7
+         pop   6
+         pop   5
+         ret
+         end
